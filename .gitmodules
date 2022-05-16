@@ -1,0 +1,11 @@
+[submodule "TsukiSuite"]
+	path = TsukiSuite
+	url = git@github.com:LunariStudios/TsukiSuite.git
+	branch = development
+[submodule "Tsuki2D"]
+	path = Tsuki2D
+	url = git@github.com:BrunoSilvaFreire/Tsuki2D.git
+	branch = main
+[submodule "com.unity.netcode.gameobjects"]
+	path = com.unity.netcode.gameobjects
+	url = https://github.com/Unity-Technologies/com.unity.netcode.gameobjects

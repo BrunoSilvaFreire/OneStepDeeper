@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Tsuki2D" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TsukiSuite" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/com.unity.netcode.gameobjects" vcs="Git" />
   </component>
 </project>

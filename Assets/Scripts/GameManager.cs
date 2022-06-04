@@ -8,6 +8,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 namespace OSD {
     public partial class GameManager : Singleton<GameManager> {
+        public EntityEvent localPlayerConnected;
+        public EntityEvent localPlayerDisconnected;
+        
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void EnsureHasGameManager() {
             if (Instance == null) {
@@ -38,9 +41,11 @@ namespace OSD {
             _localPlayer = GameConfiguration.Instance.defaultPlayerPrefab.Clone();
             _localPlayer.Pawn = entity;
             entity.gameObject.name = "Local Player Character";
+            localPlayerConnected.Invoke(entity);
         }
         private void OnLocalPlayerDisconnected(ulong clientId) {
             if (_localPlayer != null) {
+                localPlayerDisconnected.Invoke(_localPlayer.Pawn);
                 _localPlayer.Pawn = null;
                 Destroy(_localPlayer);
             }

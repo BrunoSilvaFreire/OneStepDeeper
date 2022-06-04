@@ -110,14 +110,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 958575635352079738}
+  - component: {fileID: 958575635352079747}
   - component: {fileID: 958575635352079739}
   - component: {fileID: 958575635352079751}
   - component: {fileID: 958575635352079736}
   - component: {fileID: 958575635352079750}
   - component: {fileID: 958575635352079748}
-  - component: {fileID: 958575635352079747}
   - component: {fileID: 1651848236164439636}
   - component: {fileID: 7729690130775559198}
+  - component: {fileID: 2056458199991124644}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -142,6 +143,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &958575635352079747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958575635352079740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &958575635352079739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,22 +245,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 1}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &958575635352079747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958575635352079740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!114 &1651848236164439636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +285,20 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
+--- !u!114 &2056458199991124644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958575635352079740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf932f0726b4e97aab69fcfc80fa7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentType:
+    m_InternalValue: 0
 --- !u!1 &958575635728413861
 GameObject:
   m_ObjectHideFlags: 0

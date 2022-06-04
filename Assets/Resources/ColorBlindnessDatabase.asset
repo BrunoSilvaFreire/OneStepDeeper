@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71580f9ae97143c8b7394cdd6e2f424b, type: 3}
   m_Name: ColorBlindnessDatabase
   m_EditorClassIdentifier: 
-  colorBlindnessTypes: []
+  entries:
+    keys: 010000000200000003000000
+    values:
+    - {fileID: 11400000, guid: f23dfdab014d3504dab0e5a3b7a616a8, type: 2}
+    - {fileID: 11400000, guid: 65298189ff5d4ed4493b9f55cff6663e, type: 2}
+    - {fileID: 11400000, guid: 2a54d7a0b75788841afb8cb13e4c5119, type: 2}

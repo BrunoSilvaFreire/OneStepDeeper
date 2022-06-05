@@ -7,6 +7,8 @@ namespace OSD {
         private float horizontal;
         [SerializeField]
         private EntityAction jump;
+        [SerializeField]
+        private EntityAction interact;
 
         public float Horizontal {
             get => horizontal;
@@ -14,9 +16,13 @@ namespace OSD {
         }
 
         public EntityAction Jump => jump;
+
+        public EntityAction Interact => interact;
+
         protected override void Transfer(OSDPlatformerSource src) {
             horizontal = src.GetHorizontal();
             jump.Current = src.GetJump();
+            interact.Current = src.GetInteract();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace OSD.Gameplay {
             collider = GetComponent<TilemapCollider2D>();
             GameManager.Instance.localPlayerConnected.AddListener(OnLocalPlayerConnected);
             GameManager.Instance.localPlayerDisconnected.AddListener(OnLocalPlayerDisconnected);
-            current = Slots<ColorBlindness>.OnChangedNotNull(v =>
+            current = new Slot<ColorBlindness>().OnChangedNotNull(v =>
             {
                 current.ListenAndInvoke(v.currentType, UpdateTo);
             });
@@ -34,7 +34,7 @@ namespace OSD.Gameplay {
         }
 
         private void UpdateTo(ColorBlindnessType currentTypeValue) {
-            if (currentTypeValue == colorBlindness) {
+            if (currentTypeValue == ColorBlindnessType.None || currentTypeValue == colorBlindness) {
                 Hide();
             } else {
                 Show();

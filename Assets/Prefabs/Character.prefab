@@ -415,6 +415,7 @@ Transform:
   m_Children:
   - {fileID: 958575635033064919}
   - {fileID: 958575636431699818}
+  - {fileID: 6851060121225742412}
   m_Father: {fileID: 958575635352079738}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -439,7 +440,8 @@ MonoBehaviour:
   supportState:
     flags: 2
   activeState: {fileID: 958575635033064918}
-  globalAttachments: []
+  globalAttachments:
+  - {fileID: 8727428105765070919}
   onStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -462,7 +464,7 @@ MonoBehaviour:
   length: 0.1
   layerMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 55
 --- !u!1 &958575636431699819
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,3 +559,51 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   whenGrounded: {fileID: 958575635033064918}
+--- !u!1 &2052494036960150010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6851060121225742412}
+  - component: {fileID: 8727428105765070919}
+  m_Layer: 0
+  m_Name: Interaction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6851060121225742412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052494036960150010}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 958575636180346688}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8727428105765070919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052494036960150010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 345b0757875b4572a712c01f746d0765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRadius: 3
+  interactableMask:
+    serializedVersion: 2
+    m_Bits: 64

@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Background
   - Water
   - UI
   - Interaction
@@ -38,6 +38,9 @@ TagManager:
   - 
   - Kaleidoscope
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1685718573
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

@@ -42,6 +42,9 @@ namespace OSD {
             }
             _localPlayer = GameConfiguration.Instance.defaultPlayerPrefab.Clone();
             _localPlayer.Pawn = entity;
+            if (networkObject.IsOwner) {
+                TeleportToOrigin(entity);
+            }
             entity.gameObject.name = "Local Player Character";
             localPlayerConnected.Invoke(entity);
         }
@@ -54,12 +57,19 @@ namespace OSD {
         }
 
         private void OnRemotePlayerConnected(ulong clientId) {
+
             var networkObject = _networkManager.ConnectedClients[clientId].PlayerObject;
             if (!networkObject.TryGetComponent<Entity>(out var entity)) {
                 return;
             }
+            if (networkObject.IsOwner) {
+                TeleportToOrigin(entity);
+            }
             entity.gameObject.name = $"Remote Player {clientId} Character";
 
+        }
+        private void TeleportToOrigin(Entity entity) {
+            entity.transform.position = LevelOrigin.Instance.transform.position;
         }
         private void OnRemotePlayerDisconnected(ulong clientId) { }
         private IEnumerator HostRoutine(ushort port, int scene) {

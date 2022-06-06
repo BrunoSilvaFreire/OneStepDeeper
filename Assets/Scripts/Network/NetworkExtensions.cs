@@ -1,7 +1,7 @@
 ﻿using Lunari.Tsuki;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine.Events;
+
 namespace OSD.Network {
     public static class NetworkExtensions {
         public static Slot<T> Listen<T, A>(this Slot<T> slot, NetworkVariable<A> variable, NetworkVariable<A>.OnValueChangedDelegate listener) where T : class where A : unmanaged {

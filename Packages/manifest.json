@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.cyanilux.urp-blitrenderfeature": "https://github.com/Cyanilux/URP_BlitRenderFeature.git",
     "com.lunari.tsuki": "file:../TsukiSuite/Assets",
     "com.lunari.tsuki2d": "file:../Tsuki2D/Assets",
     "com.unity.cinemachine": "2.8.4",

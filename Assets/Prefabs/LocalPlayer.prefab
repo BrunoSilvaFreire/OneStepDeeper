@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   input: {fileID: 676597178127055861}
+  localCameraPriority: 100
 --- !u!114 &676597178127055861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +179,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 119
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Animations;
+#endif
 using UnityEngine;
 
 namespace OSD.UI {
@@ -10,11 +12,14 @@ namespace OSD.UI {
         private static readonly int RevealKey = Animator.StringToHash("Visible");
 
         public Animator animator;
-
+#if UNITY_EDITOR
         [ValueDropdown(nameof(GetAllStates))]
+#endif
         public string revealedState = "Base Layer.Revealed";
+#if UNITY_EDITOR
 
         [ValueDropdown(nameof(GetAllStates))]
+#endif
         public string concealedState = "Base Layer.Concealed";
 #if UNITY_EDITOR
         public IEnumerable<string> GetAllStates {

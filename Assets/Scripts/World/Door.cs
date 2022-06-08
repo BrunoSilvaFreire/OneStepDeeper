@@ -6,24 +6,41 @@ namespace OSD.World {
         public new Collider2D collider;
         public new SpriteRenderer renderer;
 
+
         public void Open() {
-            DisableDoor();
             if (IsOwner) {
-                NotifyOpenClientRpc();
+                SetEnabledClientRpc(false);
+            } else {
+                SetComponentsEnabled(false);
+                RemoteEnabledServerRpc(false);
             }
-        }
-        private void DisableDoor() {
-            collider.enabled = false;
-            renderer.enabled = false;
-        }
-        [ClientRpc]
-        private void NotifyOpenClientRpc() {
-            DisableDoor();
         }
 
         public void Close() {
-            collider.enabled = true;
-            renderer.enabled = true;
+            if (IsOwner) {
+                SetEnabledClientRpc(true);
+            } else {
+                SetComponentsEnabled(true);
+                RemoteEnabledServerRpc(true);
+            }
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void RemoteEnabledServerRpc(bool v) {
+            if (!v) {
+                Open();
+            } else {
+                Close();
+            }
+        }
+
+        [ClientRpc]
+        private void SetEnabledClientRpc(bool enabled) {
+            SetComponentsEnabled(enabled);
+        }
+        private void SetComponentsEnabled(bool enabled) {
+            collider.enabled = enabled;
+            renderer.enabled = enabled;
         }
 
     }

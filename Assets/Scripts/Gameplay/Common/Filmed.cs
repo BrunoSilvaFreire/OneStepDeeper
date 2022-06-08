@@ -18,6 +18,7 @@ namespace OSD.Gameplay.Common {
 
                 if (sceneCamera == null) {
                     Camera = Instantiate(cameraPrefab);
+                    DontDestroyOnLoad(Camera);
                     obj = Camera.gameObject;
                     //obj.hideFlags = HideFlags.NotEditable;
                     obj.name = $"EntityCamera({entity.name})";

@@ -42,6 +42,7 @@ namespace OSD {
             }
             _localPlayer = GameConfiguration.Instance.defaultPlayerPrefab.Clone();
             _localPlayer.Pawn = entity;
+            DontDestroyOnLoad(_localPlayer.gameObject);
             if (networkObject.IsOwner) {
                 TeleportToOrigin(entity);
             }
@@ -69,7 +70,7 @@ namespace OSD {
 
         }
         private void TeleportToOrigin(Entity entity) {
-            entity.transform.position = LevelOrigin.Instance.transform.position;
+            LevelOrigin.Instance.Teleport(entity);
         }
         private void OnRemotePlayerDisconnected(ulong clientId) { }
         private IEnumerator HostRoutine(ushort port, int scene) {
@@ -103,7 +104,36 @@ namespace OSD {
             var transport = nm.GetComponent<UnityTransport>();
             transport.ConnectionData.Address = addr;
             transport.ConnectionData.Port = port;
+            Debug.Log($"Connecting to {addr} @ port {port}");
             nm.StartClient();
+        }
+        private bool transitioning = false;
+        private IEnumerator ResetToCurrentLevel() {
+            yield return null; // Wait one frame
+            var origin = LevelOrigin.Instance;
+            foreach (var client in _networkManager.ConnectedClientsList) {
+                var e = client.PlayerObject.GetComponent<Entity>();
+                if (e.Access(out ColorBlindness colorBlindness)) {
+                    colorBlindness.currentType.Value = ColorBlindnessType.None;
+                }
+                origin.Teleport(e);
+            }
+        }
+        public void GoToLevel(string nextLevel) {
+            if (_networkManager.IsHost) {
+                if (transitioning) {
+                    return;
+                }
+                var sceneManager = _networkManager.SceneManager;
+
+                void OnLoaded(ulong id, string sceneName, LoadSceneMode mode) {
+                    sceneManager.OnLoadComplete -= OnLoaded;
+                    StartCoroutine(ResetToCurrentLevel());
+                }
+
+                sceneManager.OnLoadComplete += OnLoaded;
+                sceneManager.LoadScene(nextLevel, LoadSceneMode.Single);
+            }
         }
     }
 }

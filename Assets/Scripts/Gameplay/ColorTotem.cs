@@ -15,6 +15,8 @@ namespace OSD.Gameplay {
         private Collider2D _trigger;
         public List<ParticleSystem> particles;
         public List<Light2D> lights;
+        public ParticleSystem pickUpPrefab;
+        private ColorBlindnessEntry _entry;
         public override void Configure(TraitDescriptor descriptor) {
             if (descriptor.RequiresComponent(out _trigger)) {
                 FetchColorFromDatabase();
@@ -23,10 +25,14 @@ namespace OSD.Gameplay {
                 _inUse = new Slot<ColorBlindness>().OnChangedNotNull(OnSet).OnChangedToNull(OnNull);
             }
         }
+
+        public override void OnDestroy() {
+            _inUse.Clear();
+        }
         private void FetchColorFromDatabase() {
-            if (ColorBlindnessDatabase.Instance.entries.TryGetValue(colorBlindness, out var entry)) {
-                SetColor(entry.characterColor);
-                SetMaterial(entry.material);
+            if (ColorBlindnessDatabase.Instance.entries.TryGetValue(colorBlindness, out _entry)) {
+                SetColor(_entry.characterColor);
+                SetMaterial(_entry.material);
             }
         }
 
@@ -91,10 +97,13 @@ namespace OSD.Gameplay {
         }
         private void SetEnabled(bool b) {
             foreach (var particle in particles) {
+                if (particle == null) {
+                    continue;
+                }
                 if (b) {
                     particle.Play();
                 } else {
-                    particle.Stop();
+                    particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
                 }
             }
         }
@@ -109,6 +118,10 @@ namespace OSD.Gameplay {
                 );
             }
             SetEnabled(false);
+
+            var system = pickUpPrefab.Clone(transform.position);
+            var main = system.main;
+            main.startColor = _entry.characterColor;
         }
     }
 }

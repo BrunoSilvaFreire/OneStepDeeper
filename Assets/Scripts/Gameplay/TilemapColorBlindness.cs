@@ -16,17 +16,29 @@ namespace OSD.Gameplay {
         private void Start() {
             renderer = GetComponent<TilemapRenderer>();
             collider = GetComponent<TilemapCollider2D>();
-            GameManager.Instance.localPlayerConnected.AddListener(OnLocalPlayerConnected);
-            GameManager.Instance.localPlayerDisconnected.AddListener(OnLocalPlayerDisconnected);
+            var gm = GameManager.Instance;
+            gm.localPlayerConnected.AddListener(OnLocalPlayerConnected);
+            gm.localPlayerDisconnected.AddListener(OnLocalPlayerDisconnected);
             current = new Slot<ColorBlindness>().OnChangedNotNull(v =>
             {
                 current.ListenAndInvoke(v.currentType, UpdateTo);
             });
+            
+            var lp = LocalPlayer.Instance;
+            if (lp != null) {
+                OnLocalPlayerConnected(lp.Pawn);
+            }
+            Hide();
         }
+        
+        private void OnDestroy() {
+            current.Clear();
+        }
+        
         private void OnLocalPlayerDisconnected(Entity arg0) {
             current.Clear();
-            Show();
         }
+        
         private void OnLocalPlayerConnected(Entity arg0) {
             if (arg0.Access(out ColorBlindness cb)) {
                 current.Value = cb;

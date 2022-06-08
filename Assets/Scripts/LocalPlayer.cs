@@ -2,15 +2,18 @@
 using Lunari.Tsuki.Singletons;
 using Lunari.Tsuki2D.Platforming.Input;
 using OSD.Gameplay.Common;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace OSD {
     public class LocalPlayer : Singleton<LocalPlayer> {
-        [SerializeField]
+        [SerializeField, HideInInspector]
         private Entity pawn;
         public PlayerInput input;
         public int localCameraPriority = 100;
+
+        [ShowInInspector]
         public Entity Pawn {
             get => pawn;
             set {

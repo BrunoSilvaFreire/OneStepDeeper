@@ -31,7 +31,16 @@ namespace OSD.Network {
                 }
             }
         }
-
+        public void SetPosition(Vector3 pos) {
+            transform.position = pos;
+            if (IsHost) {
+                SetPositionClientRpc(pos);
+            }
+        }
+        [ClientRpc]
+        private void SetPositionClientRpc(Vector3 pos) {
+            transform.position = pos;
+        }
         protected override bool OnIsServerAuthoritatitive() {
             return false;
         }
